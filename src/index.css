@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Backgrounds */
+    --color-bg-base: #0A1A14;
+    --color-bg-surface: #112318;
+    --color-bg-elevated: #1A3328;
+    --color-bg-glass: rgba(17, 35, 24, 0.75);
+
+    /* Primary — Saffron */
+    --color-primary-500: #F57C00;
+    --color-primary-400: #FF9A30;
+    --color-primary-300: #FFBA6B;
+    --color-primary-100: rgba(245, 124, 0, 0.12);
+
+    /* Secondary — Leaf Green */
+    --color-green-500: #4CAF75;
+    --color-green-400: #6DC98D;
+    --color-green-300: #9EDDB4;
+    --color-green-100: rgba(76, 175, 117, 0.12);
+
+    /* Accent — Terracotta */
+    --color-accent-500: #C1440E;
+    --color-accent-400: #E05A26;
+    --color-accent-100: rgba(193, 68, 14, 0.12);
+
+    /* Status colors */
+    --color-urgent: #EF4444;
+    --color-pending: #EAB308;
+    --color-resolved: #4CAF75;
+    --color-info: #60A5FA;
+
+    /* Text */
+    --color-text-primary: #F0EDE6;
+    --color-text-secondary: #8FA89E;
+    --color-text-tertiary: #556B62;
+
+    /* Borders */
+    --color-border: rgba(76, 175, 117, 0.15);
+    --color-border-strong: rgba(76, 175, 117, 0.35);
+
+    /* Typography */
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+  }
+}
+
+.font-display {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Background Texture */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: #0A1A14;
+}
+
+.page-wrapper::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234CAF75' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-glow {
+  position: fixed;
+  top: -180px;
+  left: -180px;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(76, 175, 117, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-glow-right {
+  position: fixed;
+  bottom: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(245, 124, 0, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pulse animation for live/urgent dots */
+@keyframes urgentPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+.animate-urgent-pulse {
+  animation: urgentPulse 2s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1A14;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(76, 175, 117, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(76, 175, 117, 0.45);
+}

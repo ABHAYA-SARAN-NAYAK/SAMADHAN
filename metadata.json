@@ -1,0 +1,6 @@
+{
+  "name": "SAMADHAN - Innovation & Mentorship Platform",
+  "description": "Societal Action & Mentorship Alliance for Demand-Driven Innovation in Jharkhand (SIH 2026 PS 26043)",
+  "requestFramePermissions": ["microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
