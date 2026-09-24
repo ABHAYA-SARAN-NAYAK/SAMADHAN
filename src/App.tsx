@@ -238,7 +238,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A1A14] text-[#F0EDE6] selection:bg-[#F57C00] selection:text-[#0A1A14] flex flex-col">
+    <div className="min-h-screen bg-[#F7F4EF] text-[#1C1410] font-sans antialiased selection:bg-[#FEF0E0] selection:text-[#D4600A] flex flex-col">
       {/* Top Navigation Bar with Role-Scoped Links & Portal Selector Button */}
       <Navbar
         currentRole={currentRole}
@@ -256,11 +256,11 @@ export default function App() {
       />
 
       {/* Main Content Area strictly isolated by active role/view */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 bg-[#112318] border-2 border-[#4CAF75] text-[#F0EDE6] p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-3 duration-200 max-w-md">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#4CAF75] animate-ping" />
+          <div className="fixed bottom-6 right-6 z-50 bg-[#1C1410] border border-[#F57C00]/40 text-[#FDF9F4] p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-fade-up max-w-md">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#3D9970] animate-ping" />
             <p className="text-xs font-semibold leading-snug">{toastMessage}</p>
           </div>
         )}

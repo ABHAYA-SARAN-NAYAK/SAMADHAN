@@ -93,46 +93,46 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
   };
 
   return (
-    <div className="space-y-6 pb-16">
+    <div className="space-y-6 pb-16 text-left">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#4CAF75]/15">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#EDE6DE]">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#EF4444]/15 border border-[#EF4444]/30 text-xs font-mono text-[#EF4444] mb-1 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444] animate-ping" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FCE8E6] border border-[#C5221F]/30 text-xs font-bold text-[#C5221F] mb-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#C5221F] animate-ping" />
             AI PROBLEM TRIAGE ENGINE
           </div>
-          <h2 className="font-display font-extrabold text-2xl text-[#F0EDE6]">
+          <h2 className="font-display font-bold text-3xl text-[#1C1410]">
             Statewide War-Room Ingestion Feed
           </h2>
-          <p className="text-xs text-[#8FA89E]">
+          <p className="text-sm text-[#7A6355] mt-0.5">
             Review automated severity scoring, deduplication clusters, and dispatch to state universities.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono text-[#8FA89E] bg-[#112318] px-3 py-1.5 rounded-xl border border-[#4CAF75]/20">
-            Total Live Feed: <strong className="text-[#F0EDE6]">{problems.length}</strong>
+          <span className="text-xs bg-white px-4 py-2 rounded-xl border border-[#EDE6DE] text-[#7A6355] shadow-2xs">
+            Total Live Feed: <strong className="text-[#1C1410] font-mono">{problems.length}</strong>
           </span>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-[#112318] p-3.5 rounded-2xl border border-[#4CAF75]/20 text-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-white p-3.5 rounded-2xl border border-[#EDE6DE] text-xs shadow-2xs">
         <div className="relative">
-          <Search className="w-3.5 h-3.5 text-[#8FA89E] absolute left-3 top-3" />
+          <Search className="w-4 h-4 text-[#7A6355] absolute left-3 top-2.5" />
           <input
             type="text"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder="Search by ID, keyword, village..."
-            className="w-full pl-8 pr-3 py-2 bg-[#0A1A14] border border-[#4CAF75]/20 rounded-xl text-[#F0EDE6] placeholder-[#556B62] outline-none"
+            className="w-full pl-9 pr-3 py-2 bg-[#FDF9F4] border border-[#EDE6DE] rounded-xl text-[#1C1410] placeholder-[#7A6355]/60 outline-none focus:border-[#F57C00]"
           />
         </div>
 
         <select
           value={selectedDomain}
           onChange={e => setSelectedDomain(e.target.value)}
-          className="bg-[#0A1A14] border border-[#4CAF75]/20 rounded-xl px-3 py-2 text-[#F0EDE6] outline-none"
+          className="bg-[#FDF9F4] border border-[#EDE6DE] rounded-xl px-3 py-2 text-[#1C1410] font-medium outline-none focus:border-[#F57C00]"
         >
           <option value="all">All Domains (10)</option>
           {JHARKHAND_DOMAINS.map(d => (
@@ -145,7 +145,7 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
         <select
           value={selectedDistrict}
           onChange={e => setSelectedDistrict(e.target.value)}
-          className="bg-[#0A1A14] border border-[#4CAF75]/20 rounded-xl px-3 py-2 text-[#F0EDE6] outline-none"
+          className="bg-[#FDF9F4] border border-[#EDE6DE] rounded-xl px-3 py-2 text-[#1C1410] font-medium outline-none focus:border-[#F57C00]"
         >
           <option value="all">All 24 Districts</option>
           {JHARKHAND_DISTRICTS.map(d => (
@@ -158,7 +158,7 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
         <select
           value={selectedStatus}
           onChange={e => setSelectedStatus(e.target.value)}
-          className="bg-[#0A1A14] border border-[#4CAF75]/20 rounded-xl px-3 py-2 text-[#F0EDE6] outline-none"
+          className="bg-[#FDF9F4] border border-[#EDE6DE] rounded-xl px-3 py-2 text-[#1C1410] font-medium outline-none focus:border-[#F57C00]"
         >
           <option value="all">All Statuses</option>
           <option value="submitted">Submitted</option>
@@ -173,19 +173,19 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
       {/* Main Table + Drawer Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Problems Table Feed (7 cols) */}
-        <div className="lg:col-span-7 bg-[#112318] border border-[#4CAF75]/20 rounded-2xl overflow-hidden shadow-xl">
+        <div className="lg:col-span-7 bg-white border border-[#EDE6DE] rounded-2xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#0A1A14] text-[#8FA89E] font-mono text-[10px] uppercase border-b border-[#4CAF75]/20">
+              <thead className="bg-[#FDF9F4] text-[#7A6355] font-bold text-xs uppercase border-b border-[#EDE6DE]">
                 <tr>
-                  <th className="p-3">ID & Urgency</th>
-                  <th className="p-3">Domain</th>
-                  <th className="p-3">District</th>
-                  <th className="p-3">Status</th>
-                  <th className="p-3 text-right">Action</th>
+                  <th className="p-3.5">ID & Urgency</th>
+                  <th className="p-3.5">Domain</th>
+                  <th className="p-3.5">District</th>
+                  <th className="p-3.5">Status</th>
+                  <th className="p-3.5 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#4CAF75]/10">
+              <tbody className="divide-y divide-[#EDE6DE]">
                 {filteredProblems.map(p => {
                   const isSelected = selectedProblem?.id === p.id;
                   const urgency = p.aiOutput.urgencyScore;
@@ -194,59 +194,59 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                       key={p.id}
                       onClick={() => setSelectedProblem(p)}
                       className={`cursor-pointer transition-colors ${
-                        isSelected ? 'bg-[#1A3328]/80' : 'hover:bg-[#1A3328]/40'
+                        isSelected ? 'bg-[#FEF0E0]' : 'hover:bg-[#FDF9F4]'
                       }`}
                     >
-                      <td className="p-3">
+                      <td className="p-3.5">
                         <div className="flex items-center gap-2">
                           <span
                             className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-                              urgency >= 80 ? 'bg-[#EF4444] animate-urgent-pulse' : urgency >= 65 ? 'bg-[#F57C00]' : 'bg-[#4CAF75]'
+                              urgency >= 80 ? 'bg-[#C5221F] animate-ping' : urgency >= 65 ? 'bg-[#F57C00]' : 'bg-[#3D9970]'
                             }`}
                           />
                           <div>
-                            <span className="font-mono font-bold text-[#FF9A30] block">
+                            <span className="font-mono font-bold text-[#D4600A] block">
                               {p.problemId}
                             </span>
-                            <span className="text-[10px] text-[#8FA89E] font-mono">
+                            <span className="text-[11px] text-[#7A6355] font-mono">
                               Score: {urgency}/100
                             </span>
                           </div>
                         </div>
                       </td>
 
-                      <td className="p-3">
-                        <span className="font-medium text-[#F0EDE6] block truncate max-w-[130px]">
+                      <td className="p-3.5">
+                        <span className="font-bold text-[#1C1410] block truncate max-w-[130px]">
                           {JHARKHAND_DOMAINS.find(d => d.key === p.aiOutput.domain)?.name || p.aiOutput.domain}
                         </span>
                       </td>
 
-                      <td className="p-3 text-[#8FA89E]">
-                        <span className="block font-medium text-[#F0EDE6]">{p.location.district}</span>
-                        <span className="text-[10px] block truncate max-w-[100px]">{p.location.block || 'Rural'}</span>
+                      <td className="p-3.5 text-[#7A6355]">
+                        <span className="block font-bold text-[#1C1410]">{p.location.district}</span>
+                        <span className="text-xs block truncate max-w-[100px]">{p.location.block || 'Rural'}</span>
                       </td>
 
-                      <td className="p-3">
+                      <td className="p-3.5">
                         <span
-                          className={`text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full capitalize ${
+                          className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-full capitalize ${
                             p.status === 'resolved' || p.status === 'deployed'
-                              ? 'bg-emerald-500/15 text-emerald-400'
+                              ? 'bg-[#E8F5EE] text-[#2E7D52]'
                               : p.status === 'assigned'
-                              ? 'bg-blue-500/15 text-blue-400'
-                              : 'bg-amber-500/15 text-amber-400'
+                              ? 'bg-[#E0F2FE] text-[#0369A1]'
+                              : 'bg-[#FEF0E0] text-[#D4600A]'
                           }`}
                         >
                           {p.status.replace('_', ' ')}
                         </span>
                       </td>
 
-                      <td className="p-3 text-right">
+                      <td className="p-3.5 text-right">
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             handleOpenMatching(p);
                           }}
-                          className="px-2.5 py-1 rounded-lg bg-[#F57C00] hover:bg-[#FF9A30] text-[#0A1A14] font-semibold text-[11px] transition-colors"
+                          className="px-3 py-1 rounded-lg bg-[#F57C00] hover:bg-[#D4600A] text-white font-bold text-xs transition-colors cursor-pointer shadow-xs"
                         >
                           Route
                         </button>
@@ -262,16 +262,16 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
         {/* Right Detail Panel (5 cols) */}
         <div className="lg:col-span-5">
           {selectedProblem ? (
-            <div className="bg-[#112318] border border-[#4CAF75]/30 rounded-3xl p-5 shadow-xl space-y-5 sticky top-20">
+            <div className="bg-white border border-[#EDE6DE] rounded-[24px] p-5 shadow-sm space-y-5 sticky top-20">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="font-mono text-xs font-bold text-[#FF9A30] bg-[#F57C00]/15 px-2 py-0.5 rounded">
+                  <span className="font-mono text-xs font-bold text-[#D4600A] bg-[#FEF0E0] px-2 py-0.5 rounded border border-[#F57C00]/20">
                     {selectedProblem.problemId}
                   </span>
-                  <h3 className="font-display font-extrabold text-base text-[#F0EDE6] mt-1.5 leading-snug">
+                  <h3 className="font-display font-bold text-lg text-[#1C1410] mt-1.5 leading-snug">
                     {selectedProblem.title}
                   </h3>
-                  <p className="text-xs text-[#8FA89E] flex items-center gap-1 mt-1">
+                  <p className="text-xs text-[#7A6355] flex items-center gap-1 mt-1 font-medium">
                     <MapPin className="w-3.5 h-3.5 text-[#F57C00]" />
                     {selectedProblem.location.village}, {selectedProblem.location.panchayat}, {selectedProblem.location.district}
                   </p>
@@ -279,33 +279,33 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
               </div>
 
               {/* AI Diagnostic Report */}
-              <div className="p-4 rounded-2xl bg-[#0A1A14] border border-[#4CAF75]/30 space-y-3">
+              <div className="p-4 rounded-2xl bg-[#FDF9F4] border border-[#EDE6DE] space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono text-[#6DC98D] uppercase font-bold flex items-center gap-1">
-                    <BrainCircuit className="w-3.5 h-3.5 text-[#F57C00]" /> Gemini Diagnostic Engine
+                  <span className="text-xs font-bold text-[#2E7D52] uppercase flex items-center gap-1">
+                    <BrainCircuit className="w-4 h-4 text-[#F57C00]" /> Gemini Diagnostic Engine
                   </span>
-                  <span className="text-[11px] font-mono text-[#F0EDE6] bg-[#112318] px-2 py-0.5 rounded">
+                  <span className="text-xs font-mono font-bold text-[#1C1410] bg-white px-2 py-0.5 rounded border border-[#EDE6DE]">
                     Conf: {Math.round(selectedProblem.aiOutput.confidence * 100)}%
                   </span>
                 </div>
 
                 {/* Score Grid */}
                 <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                  <div className="p-2 bg-[#112318] rounded-xl border border-[#4CAF75]/15">
-                    <span className="text-[10px] text-[#8FA89E] block">Urgency</span>
-                    <span className="font-mono font-bold text-sm text-[#EF4444]">
+                  <div className="p-2.5 bg-white rounded-xl border border-[#EDE6DE]">
+                    <span className="text-xs text-[#7A6355] block">Urgency</span>
+                    <span className="font-mono font-bold text-base text-[#C5221F]">
                       {selectedProblem.aiOutput.urgencyScore}/100
                     </span>
                   </div>
-                  <div className="p-2 bg-[#112318] rounded-xl border border-[#4CAF75]/15">
-                    <span className="text-[10px] text-[#8FA89E] block">Solvability</span>
-                    <span className="font-mono font-bold text-sm text-[#60A5FA]">
+                  <div className="p-2.5 bg-white rounded-xl border border-[#EDE6DE]">
+                    <span className="text-xs text-[#7A6355] block">Solvability</span>
+                    <span className="font-mono font-bold text-base text-[#0369A1]">
                       {selectedProblem.aiOutput.solvabilityScore}/100
                     </span>
                   </div>
-                  <div className="p-2 bg-[#112318] rounded-xl border border-[#4CAF75]/15">
-                    <span className="text-[10px] text-[#8FA89E] block">Composite</span>
-                    <span className="font-mono font-bold text-sm text-[#4CAF75]">
+                  <div className="p-2.5 bg-white rounded-xl border border-[#EDE6DE]">
+                    <span className="text-xs text-[#7A6355] block">Composite</span>
+                    <span className="font-mono font-bold text-base text-[#2E7D52]">
                       {selectedProblem.aiOutput.compositeScore}/100
                     </span>
                   </div>
@@ -313,14 +313,14 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
 
                 {/* Severity Justification */}
                 {selectedProblem.aiOutput.severityReason && (
-                  <p className="text-[11px] text-[#9EDDB4] italic bg-[#112318] p-2.5 rounded-xl border border-[#4CAF75]/10">
+                  <p className="text-xs text-[#4A3728] italic bg-white p-3 rounded-xl border border-[#EDE6DE] leading-relaxed">
                     "{selectedProblem.aiOutput.severityReason}"
                   </p>
                 )}
 
                 {/* Cluster Tag */}
                 {selectedProblem.aiOutput.clusterGroupId && (
-                  <div className="p-2.5 rounded-xl bg-[#F57C00]/10 border border-[#F57C00]/30 text-xs text-[#FF9A30]">
+                  <div className="p-2.5 rounded-xl bg-[#FEF0E0] border border-[#F57C00]/30 text-xs font-semibold text-[#D4600A]">
                     Part of clustered compound issue in {selectedProblem.location.district}
                   </div>
                 )}
@@ -328,20 +328,20 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
 
               {/* Citizen Original Text */}
               <div className="space-y-1.5">
-                <span className="text-[11px] font-mono text-[#8FA89E] uppercase block">
+                <span className="text-xs font-bold text-[#7A6355] uppercase block">
                   Reported Grievance:
                 </span>
-                <p className="text-xs text-[#F0EDE6] bg-[#0A1A14] p-3 rounded-xl border border-[#4CAF75]/15 leading-relaxed">
+                <p className="text-xs text-[#1C1410] bg-[#FDF9F4] p-3.5 rounded-xl border border-[#EDE6DE] leading-relaxed">
                   {selectedProblem.description}
                 </p>
               </div>
 
               {/* Actions Grid */}
-              <div className="pt-2 border-t border-[#4CAF75]/15 flex flex-col gap-2">
+              <div className="pt-2 border-t border-[#EDE6DE] flex flex-col gap-2">
                 <button
                   id="btn-route-uni"
                   onClick={() => handleOpenMatching(selectedProblem)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#F57C00] hover:bg-[#FF9A30] text-[#0A1A14] font-semibold text-xs transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#F57C00] hover:bg-[#D4600A] text-white font-bold text-xs transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer hover:-translate-y-0.5"
                 >
                   <Building2 className="w-4 h-4" />
                   <span>Approve & Route to University Engineering Cell</span>
@@ -350,13 +350,13 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <button
                     onClick={() => onUpdateStatus(selectedProblem.id, 'under_review')}
-                    className="py-2 px-3 rounded-xl bg-[#1A3328] hover:bg-[#1A3328]/80 text-[#8FA89E] hover:text-[#F0EDE6] border border-[#4CAF75]/20 transition-colors"
+                    className="py-2 px-3 rounded-xl bg-white hover:bg-[#FDF9F4] text-[#7A6355] hover:text-[#1C1410] border border-[#EDE6DE] font-bold transition-colors cursor-pointer"
                   >
                     Flag for Verification
                   </button>
                   <button
                     onClick={() => onUpdateStatus(selectedProblem.id, 'resolved')}
-                    className="py-2 px-3 rounded-xl bg-[#4CAF75]/20 hover:bg-[#4CAF75]/30 text-[#6DC98D] border border-[#4CAF75]/30 transition-colors font-semibold"
+                    className="py-2 px-3 rounded-xl bg-[#E8F5EE] hover:bg-[#D1EBE0] text-[#2E7D52] border border-[#3D9970]/30 transition-colors font-bold cursor-pointer"
                   >
                     Mark Deployed / Done
                   </button>
@@ -364,7 +364,7 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
               </div>
             </div>
           ) : (
-            <div className="p-8 text-center bg-[#112318] rounded-3xl border border-[#4CAF75]/15 text-[#8FA89E] text-xs">
+            <div className="p-8 text-center bg-white rounded-[24px] border border-[#EDE6DE] text-[#7A6355] text-xs">
               Select a row in the problem feed to diagnose
             </div>
           )}
@@ -373,23 +373,23 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
 
       {/* University Matching Modal */}
       {showMatchModal && selectedProblem && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#112318] border border-[#4CAF75]/40 rounded-3xl p-6 max-w-xl w-full shadow-2xl space-y-5 animate-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-[#EDE6DE] rounded-[24px] p-6 max-w-xl w-full shadow-xl space-y-5 animate-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-xs font-mono text-[#F57C00] uppercase font-semibold">
+                <span className="text-[11px] font-bold text-[#F57C00] uppercase tracking-wider block">
                   Smart Routing Algorithm
                 </span>
-                <h3 className="font-display font-bold text-xl text-[#F0EDE6] mt-0.5">
+                <h3 className="font-display font-bold text-2xl text-[#1C1410] mt-0.5">
                   Recommend University for {selectedProblem.problemId}
                 </h3>
-                <p className="text-xs text-[#8FA89E]">
+                <p className="text-xs text-[#7A6355]">
                   Domain: {selectedProblem.aiOutput.domain} • District: {selectedProblem.location.district}
                 </p>
               </div>
               <button
                 onClick={() => setShowMatchModal(false)}
-                className="p-1 rounded-lg text-[#8FA89E] hover:text-[#F0EDE6] hover:bg-[#1A3328]"
+                className="p-1 rounded-lg text-[#7A6355] hover:text-[#1C1410] cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -401,19 +401,19 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                 matchResults.map((rec, idx) => (
                   <div
                     key={rec.universityId}
-                    className="p-4 rounded-2xl bg-[#0A1A14] border border-[#4CAF75]/25 hover:border-[#4CAF75] transition-all space-y-2.5"
+                    className="p-4 rounded-2xl bg-[#FDF9F4] border border-[#EDE6DE] hover:border-[#F57C00] transition-all space-y-2.5"
                   >
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-xs font-bold text-[#F57C00] bg-[#F57C00]/10 px-2 py-0.5 rounded">
+                          <span className="font-mono text-xs font-bold text-[#D4600A] bg-[#FEF0E0] px-2 py-0.5 rounded border border-[#F57C00]/20">
                             Rank #{idx + 1}
                           </span>
-                          <h4 className="font-display font-bold text-sm text-[#F0EDE6]">{rec.name}</h4>
+                          <h4 className="font-display font-bold text-base text-[#1C1410]">{rec.name}</h4>
                         </div>
-                        <p className="text-[11px] text-[#8FA89E] mt-0.5">Location: {rec.city}, Jharkhand</p>
+                        <p className="text-xs text-[#7A6355] mt-0.5">Location: {rec.city}, Jharkhand</p>
                       </div>
-                      <span className="text-xs font-mono font-extrabold text-[#4CAF75] bg-[#4CAF75]/15 px-2.5 py-1 rounded-full">
+                      <span className="text-xs font-mono font-bold text-[#2E7D52] bg-[#E8F5EE] px-2.5 py-1 rounded-full">
                         {rec.matchScore}% Match
                       </span>
                     </div>
@@ -421,8 +421,8 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                     {/* Reasons */}
                     <div className="space-y-1">
                       {rec.reasons.map((r: string, rIdx: number) => (
-                        <div key={rIdx} className="text-[11px] text-[#9EDDB4] flex items-center gap-1.5">
-                          <Check className="w-3 h-3 text-[#4CAF75] shrink-0" />
+                        <div key={rIdx} className="text-xs text-[#2E7D52] flex items-center gap-1.5 font-medium">
+                          <Check className="w-3.5 h-3.5 text-[#3D9970] shrink-0" />
                           <span>{r}</span>
                         </div>
                       ))}
@@ -437,7 +437,7 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                           rec.availableFaculty[0] || 'Lead Faculty Professor'
                         )
                       }
-                      className="w-full py-2 px-4 rounded-xl bg-[#4CAF75] hover:bg-[#6DC98D] text-[#0A1A14] font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer mt-2"
+                      className="w-full py-2.5 px-4 rounded-xl bg-[#3D9970] hover:bg-[#2E7D52] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer mt-2 shadow-xs"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5" />
                       <span>Assign & Create Capstone Project</span>
@@ -445,7 +445,7 @@ export const AdminProblemEngineView: React.FC<AdminProblemEngineViewProps> = ({
                   </div>
                 ))
               ) : (
-                <div className="p-6 text-center text-xs text-[#8FA89E]">
+                <div className="p-6 text-center text-xs text-[#7A6355]">
                   Calculating optimal university faculty alignments...
                 </div>
               )}

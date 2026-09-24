@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { JHARKHAND_DISTRICTS, JHARKHAND_DOMAINS } from '../data/constants';
-import { MapPin, AlertTriangle, CheckCircle, TrendingUp, Filter } from 'lucide-react';
+import { MapPin, Filter } from 'lucide-react';
 
 interface JharkhandMapProps {
   selectedDistrict: string | null;
@@ -9,7 +9,6 @@ interface JharkhandMapProps {
 }
 
 // Spatial grid coordinates and SVG layout approximations for 24 Jharkhand districts
-// (Preserves exact geographical topology: NW Garhwa/Palamu -> North Chatra/Hazaribagh/Koderma/Giridih -> East Santhal Pargana -> South Kolhan -> Central Ranchi)
 const DISTRICT_MAP_COORDS: Record<string, { x: number; y: number; w: number; h: number; path: string }> = {
   Garhwa: {
     x: 40,
@@ -190,23 +189,23 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
 
   const getDistrictColor = (districtName: string) => {
     const d = JHARKHAND_DISTRICTS.find(item => item.name === districtName);
-    if (!d) return '#1A3328';
+    if (!d) return '#F0EBE3';
 
     if (metric === 'urgency') {
-      if (d.urgencyAverage >= 80) return '#EF4444'; // Red
+      if (d.urgencyAverage >= 80) return '#D4600A'; // Deep Saffron/Terracotta (Critical)
       if (d.urgencyAverage >= 68) return '#F57C00'; // Saffron
-      if (d.urgencyAverage >= 58) return '#EAB308'; // Amber
-      return '#4CAF75'; // Green
+      if (d.urgencyAverage >= 58) return '#FDBA74'; // Soft Amber
+      return '#3D9970'; // Forest Green
     } else if (metric === 'problems') {
-      if (d.problemCount >= 55) return '#EF4444';
+      if (d.problemCount >= 55) return '#D4600A';
       if (d.problemCount >= 40) return '#F57C00';
-      if (d.problemCount >= 30) return '#EAB308';
-      return '#4CAF75';
+      if (d.problemCount >= 30) return '#FDBA74';
+      return '#3D9970';
     } else {
       const rate = d.resolvedCount / d.problemCount;
-      if (rate >= 0.5) return '#4CAF75';
-      if (rate >= 0.35) return '#EAB308';
-      return '#EF4444';
+      if (rate >= 0.5) return '#3D9970';
+      if (rate >= 0.35) return '#FDBA74';
+      return '#D4600A';
     }
   };
 
@@ -215,56 +214,56 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
   );
 
   return (
-    <div className="relative w-full bg-[#112318] border border-[#4CAF75]/25 rounded-2xl p-4 md:p-6 shadow-xl">
+    <div className="relative w-full bg-white border border-[#EDE6DE] rounded-[24px] p-6 shadow-sm">
       {/* Map Header with Legend */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-[#4CAF75]/15">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#EDE6DE]">
         <div>
-          <h3 className="font-display font-bold text-base text-[#F0EDE6] flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#F57C00]" />
-            <span>Jharkhand Geospatial Problem Density</span>
+          <h3 className="font-display font-bold text-lg text-[#1C1410] flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-[#F57C00]" />
+            <span>Jharkhand District Geospatial Telemetry</span>
           </h3>
-          <p className="text-xs text-[#8FA89E]">
-            Real-time telemetry across 24 administrative districts • Click any district to inspect
+          <p className="text-xs text-[#7A6355] mt-0.5">
+            24 administrative districts • Click any district to filter problems & telemetry
           </p>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-3 text-[11px] font-mono text-[#8FA89E]">
+        <div className="flex items-center gap-3 text-xs font-semibold text-[#7A6355]">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-[#EF4444]" />
-            <span>Critical / High Density</span>
+            <span className="w-3.5 h-3.5 rounded bg-[#D4600A]" />
+            <span>Critical (80+)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-[#F57C00]" />
-            <span>Urgent</span>
+            <span className="w-3.5 h-3.5 rounded bg-[#F57C00]" />
+            <span>Urgent (68-79)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-[#EAB308]" />
-            <span>Moderate</span>
+            <span className="w-3.5 h-3.5 rounded bg-[#FDBA74]" />
+            <span>Moderate (58-67)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded bg-[#4CAF75]" />
-            <span>Managed / Low</span>
+            <span className="w-3.5 h-3.5 rounded bg-[#3D9970]" />
+            <span>Managed</span>
           </div>
         </div>
       </div>
 
       {/* Main SVG Grid & Interactive Map */}
-      <div className="relative flex flex-col lg:flex-row items-center gap-6">
+      <div className="relative flex flex-col lg:flex-row items-center gap-8">
         <div className="w-full lg:w-3/5 aspect-[16/11] max-w-[680px]">
           <svg
             viewBox="0 0 680 430"
-            className="w-full h-full filter drop-shadow-lg select-none"
+            className="w-full h-full filter select-none drop-shadow-xs"
             xmlns="http://www.w3.org/2000/svg"
           >
             {/* Background State Contour Outline */}
             <path
               d="M 30,65 L 140,40 L 260,35 L 360,35 L 480,25 L 650,15 L 665,90 L 650,160 L 510,195 L 440,210 L 430,280 L 420,360 L 350,355 L 290,420 L 180,410 L 100,380 L 105,300 L 35,150 Z"
               fill="none"
-              stroke="#4CAF75"
+              stroke="#BFB0A3"
               strokeWidth="1.5"
               strokeDasharray="4 4"
-              opacity="0.3"
+              opacity="0.6"
             />
 
             {/* Render each District Polygon */}
@@ -282,7 +281,7 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
                 <g
                   key={name}
                   id={`map-district-${name.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="cursor-pointer transition-all duration-200"
+                  className="cursor-pointer transition-all duration-150"
                   onMouseEnter={() => setHoveredDistrict(name)}
                   onMouseLeave={() => setHoveredDistrict(null)}
                   onClick={() => onSelectDistrict(selectedDistrict === name ? null : name)}
@@ -290,10 +289,10 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
                   <path
                     d={geom.path}
                     fill={color}
-                    fillOpacity={isSelected ? 0.95 : isHovered ? 0.85 : 0.45}
-                    stroke={isSelected ? '#FF9A30' : isHovered ? '#F0EDE6' : 'rgba(76, 175, 117, 0.4)'}
-                    strokeWidth={isSelected ? 3 : isHovered ? 2 : 1}
-                    className="transition-all duration-200"
+                    fillOpacity={isSelected ? 1 : isHovered ? 0.9 : 0.75}
+                    stroke={isSelected ? '#1C1410' : isHovered ? '#1C1410' : '#FFFFFF'}
+                    strokeWidth={isSelected ? 3 : isHovered ? 2 : 1.5}
+                    className="transition-all duration-150"
                   />
 
                   {/* Pulsing indicator for top critical districts like Garhwa */}
@@ -302,9 +301,9 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
                       cx={centerX - 5}
                       cy={centerY - 5}
                       r="6"
-                      fill="#EF4444"
+                      fill="#D4600A"
                       className="animate-ping"
-                      opacity="0.75"
+                      opacity="0.7"
                     />
                   )}
 
@@ -313,10 +312,11 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
                     x={centerX}
                     y={centerY - 2}
                     textAnchor="middle"
-                    fill="#F0EDE6"
-                    fontSize="9"
-                    fontWeight={isSelected || isHovered ? '700' : '600'}
-                    className="pointer-events-none font-display tracking-tight"
+                    fill={color === '#FDBA74' ? '#1C1410' : '#FFFFFF'}
+                    fontSize="9.5"
+                    fontWeight="700"
+                    fontFamily="Plus Jakarta Sans"
+                    className="pointer-events-none tracking-tight"
                   >
                     {name.length > 9 ? name.substring(0, 7) + '.' : name}
                   </text>
@@ -326,12 +326,13 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
                     x={centerX}
                     y={centerY + 9}
                     textAnchor="middle"
-                    fill={isHovered || isSelected ? '#FFFFFF' : '#8FA89E'}
-                    fontSize="8"
-                    fontFamily="monospace"
+                    fill={color === '#FDBA74' ? '#4A3728' : '#FDF9F4'}
+                    fontSize="8.5"
+                    fontFamily="JetBrains Mono"
+                    fontWeight="600"
                     className="pointer-events-none"
                   >
-                    {distData?.problemCount} probs
+                    {distData?.problemCount}
                   </text>
                 </g>
               );
@@ -340,25 +341,25 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
         </div>
 
         {/* District Detail Card Sidebar */}
-        <div className="w-full lg:w-2/5 flex flex-col justify-between p-4 bg-[#0A1A14] border border-[#4CAF75]/20 rounded-xl">
+        <div className="w-full lg:w-2/5 flex flex-col justify-between p-5 bg-[#FDF9F4] border border-[#EDE6DE] rounded-2xl shadow-xs">
           {activeDistrictInfo ? (
-            <div className="space-y-3 animate-in fade-in duration-150">
+            <div className="space-y-4 animate-in fade-in duration-150">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="text-[10px] font-mono text-[#F57C00] uppercase tracking-wider">
+                  <span className="text-[11px] font-mono font-bold text-[#F57C00] uppercase tracking-wider">
                     District Telemetry
                   </span>
-                  <h4 className="font-display font-extrabold text-xl text-[#F0EDE6]">
+                  <h4 className="font-display font-bold text-2xl text-[#1C1410]">
                     {activeDistrictInfo.name}
                   </h4>
-                  <p className="text-xs text-[#8FA89E]">HQ: {activeDistrictInfo.headquarters}</p>
+                  <p className="text-xs text-[#7A6355]">HQ: {activeDistrictInfo.headquarters}</p>
                 </div>
                 <div className="text-right">
                   <span
-                    className={`inline-block px-2.5 py-1 rounded-full text-xs font-mono font-bold ${
+                    className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${
                       activeDistrictInfo.urgencyAverage >= 80
-                        ? 'bg-red-500/20 text-red-400 border border-red-500/40'
-                        : 'bg-amber-500/20 text-amber-400 border border-amber-500/40'
+                        ? 'bg-[#FEF0E0] text-[#D4600A] border border-[#F57C00]/30'
+                        : 'bg-[#E8F5EE] text-[#2E7D52] border border-[#3D9970]/30'
                     }`}
                   >
                     Urgency: {activeDistrictInfo.urgencyAverage}/100
@@ -367,49 +368,49 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
               </div>
 
               {/* Stat grid */}
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="p-2.5 rounded-lg bg-[#112318] border border-[#4CAF75]/15">
-                  <span className="text-[#8FA89E] text-[11px]">Total Submissions</span>
-                  <p className="font-mono font-bold text-lg text-[#F0EDE6]">
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div className="p-3 rounded-xl bg-white border border-[#EDE6DE]">
+                  <span className="text-[#7A6355] text-xs font-semibold">Total Submissions</span>
+                  <p className="font-mono font-bold text-2xl text-[#1C1410] mt-0.5">
                     {activeDistrictInfo.problemCount}
                   </p>
                 </div>
-                <div className="p-2.5 rounded-lg bg-[#112318] border border-[#4CAF75]/15">
-                  <span className="text-[#8FA89E] text-[11px]">Solutions Deployed</span>
-                  <p className="font-mono font-bold text-lg text-[#4CAF75]">
+                <div className="p-3 rounded-xl bg-white border border-[#EDE6DE]">
+                  <span className="text-[#7A6355] text-xs font-semibold">Solutions Deployed</span>
+                  <p className="font-mono font-bold text-2xl text-[#2E7D52] mt-0.5">
                     {activeDistrictInfo.resolvedCount} ({Math.round((activeDistrictInfo.resolvedCount / activeDistrictInfo.problemCount) * 100)}%)
                   </p>
                 </div>
               </div>
 
               {/* Primary Domain Alert */}
-              <div className="p-2.5 rounded-lg bg-[#1A3328] border border-[#4CAF75]/25 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="text-base">
+              <div className="p-3 rounded-xl bg-white border border-[#EDE6DE] flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xl">
                     {JHARKHAND_DOMAINS.find(d => d.key === activeDistrictInfo.topDomain)?.icon || '💧'}
                   </span>
                   <div>
-                    <span className="text-[10px] text-[#8FA89E] block">Top Domain Pressure</span>
-                    <span className="font-semibold text-xs text-[#F0EDE6]">
+                    <span className="text-[10px] font-semibold text-[#7A6355] block">Top Domain Pressure</span>
+                    <span className="font-bold text-xs text-[#1C1410]">
                       {JHARKHAND_DOMAINS.find(d => d.key === activeDistrictInfo.topDomain)?.name}
                     </span>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-[#6DC98D] bg-[#4CAF75]/15 px-2 py-0.5 rounded">
+                <span className="text-xs font-mono font-bold text-[#2E7D52] bg-[#E8F5EE] px-2.5 py-1 rounded-full">
                   {activeDistrictInfo.blocks.length} Blocks
                 </span>
               </div>
 
               {/* Key Blocks */}
               <div>
-                <span className="text-[10px] font-mono text-[#8FA89E] uppercase block mb-1">
+                <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider block mb-1.5">
                   Key Administrative Blocks
                 </span>
-                <div className="flex flex-wrap gap-1">
+                <div className="flex flex-wrap gap-1.5">
                   {activeDistrictInfo.blocks.map(b => (
                     <span
                       key={b}
-                      className="text-[11px] bg-[#112318] text-[#8FA89E] px-2 py-0.5 rounded border border-[#4CAF75]/15"
+                      className="text-xs bg-white text-[#4A3728] px-2.5 py-1 rounded-md border border-[#EDE6DE] font-medium"
                     >
                       {b}
                     </span>
@@ -421,9 +422,9 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
               <button
                 id="btn-filter-district"
                 onClick={() => onSelectDistrict(activeDistrictInfo.name)}
-                className="w-full mt-2 py-2 px-3 rounded-lg bg-[#F57C00] hover:bg-[#FF9A30] text-[#0A1A14] font-semibold text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full mt-2 py-2.5 px-4 rounded-full bg-[#F57C00] hover:bg-[#D4600A] text-white font-bold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
-                <Filter className="w-3.5 h-3.5" />
+                <Filter className="w-4 h-4" />
                 <span>
                   {selectedDistrict === activeDistrictInfo.name
                     ? 'Clear District Filter'
@@ -432,11 +433,11 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
               </button>
             </div>
           ) : (
-            <div className="h-full min-h-[220px] flex flex-col items-center justify-center text-center p-4">
-              <MapPin className="w-8 h-8 text-[#4CAF75]/40 mb-2 animate-bounce" />
-              <h5 className="font-display font-semibold text-sm text-[#F0EDE6]">Hover or Tap a District</h5>
-              <p className="text-xs text-[#8FA89E] mt-1 max-w-[220px]">
-                Explore ground realities, problem clusters, and active university deployments across Jharkhand.
+            <div className="h-full min-h-[240px] flex flex-col items-center justify-center text-center p-4">
+              <MapPin className="w-10 h-10 text-[#F57C00]/50 mb-2 animate-bounce" />
+              <h5 className="font-display font-bold text-base text-[#1C1410]">Select or Hover on a District</h5>
+              <p className="text-xs text-[#7A6355] mt-1 max-w-[240px] leading-relaxed">
+                Explore ground realities, problem clusters, and active university deployments across all 24 districts of Jharkhand.
               </p>
             </div>
           )}
@@ -445,3 +446,4 @@ export const JharkhandMap: React.FC<JharkhandMapProps> = ({
     </div>
   );
 };
+

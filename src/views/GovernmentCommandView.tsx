@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import {
-  ShieldAlert,
   TrendingUp,
-  MapPin,
   Building2,
   Coins,
   CheckCircle2,
   Activity,
   Download,
-  Filter,
-  Layers,
-  Sparkles,
-  ArrowUpRight,
   Compass,
   Map as MapIcon
 } from 'lucide-react';
@@ -53,12 +47,6 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
   const [mapMetric, setMapMetric] = useState<'urgency' | 'problems' | 'resolution'>('urgency');
   const [mapEngine, setMapEngine] = useState<'google' | 'tactical'>('google');
 
-  // Total metrics
-  const totalSubmissions = problems.length;
-  const activeProjectsCount = projects.filter(p => p.status !== 'completed').length;
-  const deployedCount = problems.filter(p => p.status === 'deployed' || p.status === 'resolved').length;
-  const totalCsrFunds = projects.reduce((acc, p) => acc + (p.fundingGrant?.amount || 0), 28400000);
-
   // Recharts Data Prep: Domain breakdown
   const domainData = JHARKHAND_DOMAINS.map(d => {
     const count = problems.filter(p => p.aiOutput.domain === d.key).length;
@@ -69,8 +57,8 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
   });
 
   const DOMAIN_COLORS = [
-    '#F57C00', '#4CAF75', '#60A5FA', '#EAB308', '#C1440E',
-    '#A855F7', '#EC4899', '#14B8A6', '#F97316', '#84CC16'
+    '#F57C00', '#3D9970', '#1D4ED8', '#D97706', '#C1440E',
+    '#9333EA', '#DB2777', '#0D9488', '#EA580C', '#65A30D'
   ];
 
   // Top 5 Problem Districts Bar Chart
@@ -103,18 +91,18 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
   ];
 
   return (
-    <div className="space-y-8 pb-20">
+    <div className="space-y-8 pb-20 max-w-[1280px] mx-auto px-4 sm:px-6">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#4CAF75]/15">
-        <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EF4444]/15 border border-[#EF4444]/30 text-xs font-mono text-[#EF4444] mb-1 font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-ping" />
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#EDE6DE]">
+        <div className="text-left">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF2F2] border border-[#DC2626]/20 text-xs font-bold text-[#DC2626] mb-2 uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse" />
             DIRECTORATE OF HIGHER & TECHNICAL EDUCATION • GOVT OF JHARKHAND
           </div>
-          <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[#F0EDE6]">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-[#1C1410]">
             State Innovation Command Center
           </h2>
-          <p className="text-xs text-[#8FA89E]">
+          <p className="text-sm text-[#7A6355] mt-1">
             24-District real-time telemetry, institutional routing velocity, and field deployment verification.
           </p>
         </div>
@@ -122,9 +110,9 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => alert('Exporting Official Jharkhand Innovation State Report (PDF & GeoJSON)...')}
-            className="px-4 py-2 rounded-xl bg-[#112318] hover:bg-[#1A3328] text-[#9EDDB4] border border-[#4CAF75]/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-5 py-2.5 rounded-full bg-white hover:bg-[#FDF9F4] text-[#1C1410] border border-[#EDE6DE] text-xs font-bold transition-all flex items-center gap-2 cursor-pointer shadow-xs hover:-translate-y-0.5"
           >
-            <Download className="w-3.5 h-3.5 text-[#F57C00]" />
+            <Download className="w-4 h-4 text-[#F57C00]" />
             <span>Export State Audit PDF</span>
           </button>
         </div>
@@ -132,87 +120,95 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
 
       {/* Top 4 KPI Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-2xl bg-[#112318] border border-[#4CAF75]/25 shadow-lg relative overflow-hidden">
+        <div className="p-6 rounded-[20px] bg-white border border-[#EDE6DE] shadow-sm relative overflow-hidden text-left">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-mono text-[#8FA89E] uppercase font-bold">
+            <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider">
               Citizen Grievances
             </span>
-            <Activity className="w-4 h-4 text-[#F57C00]" />
+            <div className="w-8 h-8 rounded-lg bg-[#FEF0E0] flex items-center justify-center">
+              <Activity className="w-4 h-4 text-[#F57C00]" />
+            </div>
           </div>
-          <p className="font-mono font-extrabold text-3xl text-[#F0EDE6]">
+          <p className="font-mono font-bold text-3xl text-[#1C1410]">
             1,482
           </p>
-          <div className="flex items-center gap-1 text-[11px] text-[#4CAF75] mt-2 font-mono">
-            <TrendingUp className="w-3 h-3" />
+          <div className="flex items-center gap-1 text-xs text-[#2E7D52] mt-2 font-medium">
+            <TrendingUp className="w-3.5 h-3.5" />
             <span>+34% this month (32,600 villages)</span>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[#112318] border border-[#4CAF75]/25 shadow-lg relative overflow-hidden">
+        <div className="p-6 rounded-[20px] bg-white border border-[#EDE6DE] shadow-sm relative overflow-hidden text-left">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-mono text-[#8FA89E] uppercase font-bold">
+            <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider">
               Active Uni Projects
             </span>
-            <Building2 className="w-4 h-4 text-[#4CAF75]" />
+            <div className="w-8 h-8 rounded-lg bg-[#E8F5EE] flex items-center justify-center">
+              <Building2 className="w-4 h-4 text-[#2E7D52]" />
+            </div>
           </div>
-          <p className="font-mono font-extrabold text-3xl text-[#4CAF75]">
+          <p className="font-mono font-bold text-3xl text-[#2E7D52]">
             84
           </p>
-          <div className="flex items-center gap-1 text-[11px] text-[#8FA89E] mt-2">
+          <div className="flex items-center gap-1 text-xs text-[#7A6355] mt-2 font-medium">
             <span>Across 12 State Universities</span>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[#112318] border border-[#4CAF75]/25 shadow-lg relative overflow-hidden">
+        <div className="p-6 rounded-[20px] bg-white border border-[#EDE6DE] shadow-sm relative overflow-hidden text-left">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-mono text-[#8FA89E] uppercase font-bold">
+            <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider">
               Panchayat Deployments
             </span>
-            <CheckCircle2 className="w-4 h-4 text-[#60A5FA]" />
+            <div className="w-8 h-8 rounded-lg bg-[#EFF6FF] flex items-center justify-center">
+              <CheckCircle2 className="w-4 h-4 text-[#1D4ED8]" />
+            </div>
           </div>
-          <p className="font-mono font-extrabold text-3xl text-[#60A5FA]">
+          <p className="font-mono font-bold text-3xl text-[#1D4ED8]">
             38
           </p>
-          <div className="flex items-center gap-1 text-[11px] text-[#9EDDB4] mt-2">
+          <div className="flex items-center gap-1 text-xs text-[#2E7D52] mt-2 font-medium">
             <span>4.8★ Avg Citizen Verification</span>
           </div>
         </div>
 
-        <div className="p-5 rounded-2xl bg-[#112318] border border-[#4CAF75]/25 shadow-lg relative overflow-hidden">
+        <div className="p-6 rounded-[20px] bg-white border border-[#EDE6DE] shadow-sm relative overflow-hidden text-left">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-mono text-[#8FA89E] uppercase font-bold">
+            <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider">
               CSR Pool Disbursed
             </span>
-            <Coins className="w-4 h-4 text-[#FF9A30]" />
+            <div className="w-8 h-8 rounded-lg bg-[#FEF0E0] flex items-center justify-center">
+              <Coins className="w-4 h-4 text-[#D4600A]" />
+            </div>
           </div>
-          <p className="font-mono font-extrabold text-3xl text-[#FF9A30]">
+          <p className="font-mono font-bold text-3xl text-[#D4600A]">
             ₹2.84 Cr
           </p>
-          <div className="flex items-center gap-1 text-[11px] text-[#8FA89E] mt-2">
+          <div className="flex items-center gap-1 text-xs text-[#7A6355] mt-2 font-medium">
             <span>Section 135 DPE Schedule VII</span>
           </div>
         </div>
       </div>
 
       {/* 24-District Interactive Geospatial Heatmap & Google Maps */}
-      <section className="space-y-3">
-        <div className="flex items-center justify-between flex-wrap gap-2">
+      <section className="space-y-4 text-left">
+        <div className="flex items-center justify-between flex-wrap gap-3">
           <div>
-            <span className="text-xs font-mono text-[#F57C00] uppercase font-bold">
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#F57C00] block">
               Spatial Intelligence & Ground Truth
             </span>
-            <h3 className="font-display font-bold text-xl text-[#F0EDE6]">
+            <h3 className="font-display font-bold text-2xl text-[#1C1410]">
               24-District Interactive Map
             </h3>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-3 flex-wrap">
             {/* Engine Switcher */}
-            <div className="flex items-center gap-1 p-1 bg-[#112318] rounded-xl border border-[#4CAF75]/25 text-xs">
+            <div className="flex items-center gap-1 p-1 bg-white rounded-full border border-[#EDE6DE] text-xs shadow-xs">
               <button
                 onClick={() => setMapEngine('google')}
-                className={`px-3 py-1 rounded-lg font-semibold flex items-center gap-1.5 transition-all ${
-                  mapEngine === 'google' ? 'bg-[#F57C00] text-[#0A1A14]' : 'text-[#8FA89E] hover:text-[#F0EDE6]'
+                className={`px-4 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  mapEngine === 'google' ? 'bg-[#F57C00] text-white shadow-xs' : 'text-[#4A3728] hover:text-[#1C1410]'
                 }`}
               >
                 <Compass className="w-3.5 h-3.5" />
@@ -220,8 +216,8 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
               </button>
               <button
                 onClick={() => setMapEngine('tactical')}
-                className={`px-3 py-1 rounded-lg font-semibold flex items-center gap-1.5 transition-all ${
-                  mapEngine === 'tactical' ? 'bg-[#4CAF75] text-[#0A1A14]' : 'text-[#8FA89E] hover:text-[#F0EDE6]'
+                className={`px-4 py-1.5 rounded-full font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  mapEngine === 'tactical' ? 'bg-[#3D9970] text-white shadow-xs' : 'text-[#4A3728] hover:text-[#1C1410]'
                 }`}
               >
                 <MapIcon className="w-3.5 h-3.5" />
@@ -231,27 +227,27 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
 
             {/* Metric Switcher (when in tactical mode) */}
             {mapEngine === 'tactical' && (
-              <div className="flex items-center gap-1 p-1 bg-[#112318] rounded-xl border border-[#4CAF75]/20 text-xs">
+              <div className="flex items-center gap-1 p-1 bg-white rounded-full border border-[#EDE6DE] text-xs shadow-xs">
                 <button
                   onClick={() => setMapMetric('urgency')}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-all ${
-                    mapMetric === 'urgency' ? 'bg-[#F57C00] text-[#0A1A14]' : 'text-[#8FA89E]'
+                  className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                    mapMetric === 'urgency' ? 'bg-[#F57C00] text-white' : 'text-[#7A6355]'
                   }`}
                 >
                   Urgency Score
                 </button>
                 <button
                   onClick={() => setMapMetric('problems')}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-all ${
-                    mapMetric === 'problems' ? 'bg-[#F57C00] text-[#0A1A14]' : 'text-[#8FA89E]'
+                  className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                    mapMetric === 'problems' ? 'bg-[#F57C00] text-white' : 'text-[#7A6355]'
                   }`}
                 >
                   Problem Density
                 </button>
                 <button
                   onClick={() => setMapMetric('resolution')}
-                  className={`px-3 py-1 rounded-lg font-semibold transition-all ${
-                    mapMetric === 'resolution' ? 'bg-[#F57C00] text-[#0A1A14]' : 'text-[#8FA89E]'
+                  className={`px-3.5 py-1.5 rounded-full font-bold transition-all cursor-pointer ${
+                    mapMetric === 'resolution' ? 'bg-[#F57C00] text-white' : 'text-[#7A6355]'
                   }`}
                 >
                   Resolution Rate
@@ -262,13 +258,15 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
         </div>
 
         {mapEngine === 'google' ? (
-          <JharkhandGoogleMap
-            problems={problems}
-            selectedDistrict={selectedDistrict}
-            onSelectDistrict={onSelectDistrict}
-            onSelectProblem={onSelectProblem}
-            height="560px"
-          />
+          <div className="bg-white border border-[#EDE6DE] rounded-[24px] p-2 shadow-sm overflow-hidden">
+            <JharkhandGoogleMap
+              problems={problems}
+              selectedDistrict={selectedDistrict}
+              onSelectDistrict={onSelectDistrict}
+              onSelectProblem={onSelectProblem}
+              height="560px"
+            />
+          </div>
         ) : (
           <JharkhandMap
             selectedDistrict={selectedDistrict}
@@ -279,18 +277,16 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
       </section>
 
       {/* Analytics Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left">
         {/* Domain Distribution Donut */}
-        <div className="p-6 rounded-3xl bg-[#112318] border border-[#4CAF75]/25 shadow-xl space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-[10px] font-mono text-[#F57C00] uppercase font-bold">
-                Categorization Breakdown
-              </span>
-              <h4 className="font-display font-bold text-base text-[#F0EDE6]">
-                Problems by 10 Societal Domains
-              </h4>
-            </div>
+        <div className="p-7 rounded-[24px] bg-white border border-[#EDE6DE] shadow-sm space-y-4">
+          <div>
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#F57C00] block">
+              Categorization Breakdown
+            </span>
+            <h4 className="font-display font-bold text-lg text-[#1C1410]">
+              Problems by 10 Societal Domains
+            </h4>
           </div>
 
           <div className="h-64 w-full">
@@ -310,31 +306,31 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0A1A14', borderColor: '#4CAF75', borderRadius: '12px', fontSize: '12px' }}
-                  itemStyle={{ color: '#F0EDE6' }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#EDE6DE', borderRadius: '12px', fontSize: '12px', color: '#1C1410', boxShadow: '0 4px 12px rgba(28,20,16,0.08)' }}
+                  itemStyle={{ color: '#1C1410', fontWeight: '600' }}
                 />
               </PieChart>
             </ResponsiveContainer>
           </div>
 
           {/* Mini Domain Legend */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
             {domainData.slice(0, 6).map((d, i) => (
-              <div key={d.name} className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: DOMAIN_COLORS[i] }} />
-                <span className="text-[#8FA89E] truncate">{d.name}</span>
+              <div key={d.name} className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: DOMAIN_COLORS[i] }} />
+                <span className="text-[#4A3728] truncate font-medium">{d.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Top 5 Problem Districts Bar Chart */}
-        <div className="p-6 rounded-3xl bg-[#112318] border border-[#4CAF75]/25 shadow-xl space-y-4">
+        <div className="p-7 rounded-[24px] bg-white border border-[#EDE6DE] shadow-sm space-y-4">
           <div>
-            <span className="text-[10px] font-mono text-[#EF4444] uppercase font-bold">
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#DC2626] block">
               District Grievance Inflow
             </span>
-            <h4 className="font-display font-bold text-base text-[#F0EDE6]">
+            <h4 className="font-display font-bold text-lg text-[#1C1410]">
               Top 5 High-Pressure Districts
             </h4>
           </div>
@@ -342,27 +338,27 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={topDistrictsData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(76, 175, 117, 0.1)" />
-                <XAxis dataKey="name" stroke="#8FA89E" fontSize={11} />
-                <YAxis stroke="#8FA89E" fontSize={11} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#EDE6DE" />
+                <XAxis dataKey="name" stroke="#7A6355" fontSize={11} tick={{ fill: '#7A6355' }} />
+                <YAxis stroke="#7A6355" fontSize={11} tick={{ fill: '#7A6355' }} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0A1A14', borderColor: '#4CAF75', borderRadius: '12px', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#EDE6DE', borderRadius: '12px', fontSize: '12px', color: '#1C1410', boxShadow: '0 4px 12px rgba(28,20,16,0.08)' }}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
+                <Legend wrapperStyle={{ fontSize: '11px', fontWeight: '600', color: '#4A3728' }} />
                 <Bar dataKey="problems" fill="#F57C00" name="Total Submissions" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="resolved" fill="#4CAF75" name="Solutions Deployed" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="resolved" fill="#3D9970" name="Solutions Deployed" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* 6-Month Ingestion & Resolution Trend */}
-        <div className="p-6 rounded-3xl bg-[#112318] border border-[#4CAF75]/25 shadow-xl space-y-4">
+        <div className="p-7 rounded-[24px] bg-white border border-[#EDE6DE] shadow-sm space-y-4">
           <div>
-            <span className="text-[10px] font-mono text-[#60A5FA] uppercase font-bold">
+            <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#1D4ED8] block">
               Deployment Velocity
             </span>
-            <h4 className="font-display font-bold text-base text-[#F0EDE6]">
+            <h4 className="font-display font-bold text-lg text-[#1C1410]">
               6-Month Platform Scaling Trajectory
             </h4>
           </div>
@@ -370,28 +366,28 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={trendData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(76, 175, 117, 0.1)" />
-                <XAxis dataKey="month" stroke="#8FA89E" fontSize={11} />
-                <YAxis stroke="#8FA89E" fontSize={11} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#EDE6DE" />
+                <XAxis dataKey="month" stroke="#7A6355" fontSize={11} tick={{ fill: '#7A6355' }} />
+                <YAxis stroke="#7A6355" fontSize={11} tick={{ fill: '#7A6355' }} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#0A1A14', borderColor: '#4CAF75', borderRadius: '12px', fontSize: '12px' }}
+                  contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#EDE6DE', borderRadius: '12px', fontSize: '12px', color: '#1C1410', boxShadow: '0 4px 12px rgba(28,20,16,0.08)' }}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px' }} />
-                <Line type="monotone" dataKey="submitted" stroke="#FF9A30" strokeWidth={2} name="Submissions" />
-                <Line type="monotone" dataKey="resolved" stroke="#4CAF75" strokeWidth={2} name="Deployed Solutions" />
+                <Legend wrapperStyle={{ fontSize: '11px', fontWeight: '600', color: '#4A3728' }} />
+                <Line type="monotone" dataKey="submitted" stroke="#F57C00" strokeWidth={2.5} name="Submissions" dot={{ fill: '#F57C00', r: 4 }} />
+                <Line type="monotone" dataKey="resolved" stroke="#3D9970" strokeWidth={2.5} name="Deployed Solutions" dot={{ fill: '#3D9970', r: 4 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
         {/* University Innovation Leaderboard */}
-        <div className="p-6 rounded-3xl bg-[#112318] border border-[#4CAF75]/25 shadow-xl space-y-4">
+        <div className="p-7 rounded-[24px] bg-white border border-[#EDE6DE] shadow-sm space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-mono text-[#4CAF75] uppercase font-bold">
+              <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#3D9970] block">
                 Institutional Performance
               </span>
-              <h4 className="font-display font-bold text-base text-[#F0EDE6]">
+              <h4 className="font-display font-bold text-lg text-[#1C1410]">
                 University Capstone Leaderboard
               </h4>
             </div>
@@ -401,23 +397,23 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
             {uniLeaderboard.map((u, i) => (
               <div
                 key={u.name}
-                className="p-3 bg-[#0A1A14] rounded-2xl border border-[#4CAF75]/15 flex items-center justify-between text-xs"
+                className="p-3.5 bg-[#FDF9F4] rounded-2xl border border-[#EDE6DE] flex items-center justify-between text-xs"
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="w-5 h-5 rounded-full bg-[#F57C00]/15 text-[#FF9A30] font-mono font-bold flex items-center justify-center text-[10px]">
+                <div className="flex items-center gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#FEF0E0] text-[#D4600A] font-mono font-bold flex items-center justify-center text-[11px]">
                     #{i + 1}
                   </span>
                   <div>
-                    <span className="font-semibold text-[#F0EDE6] block">{u.name}</span>
-                    <span className="text-[10px] text-[#8FA89E]">{u.active} Active Projects</span>
+                    <span className="font-bold text-[#1C1410] block text-sm">{u.name}</span>
+                    <span className="text-xs text-[#7A6355]">{u.active} Active Projects</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[#4CAF75] font-bold">
+                  <span className="font-mono text-[#2E7D52] font-bold text-xs bg-[#E8F5EE] px-2.5 py-1 rounded-full">
                     {u.deployed} Deployed
                   </span>
-                  <span className="text-[11px] font-mono text-[#FF9A30] bg-[#F57C00]/10 px-2 py-0.5 rounded">
+                  <span className="text-xs font-mono font-bold text-[#D4600A] bg-[#FEF0E0] px-2.5 py-1 rounded-full">
                     {u.rating}
                   </span>
                 </div>
@@ -429,3 +425,4 @@ export const GovernmentCommandView: React.FC<GovernmentCommandViewProps> = ({
     </div>
   );
 };
+

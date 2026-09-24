@@ -6,8 +6,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Water Resources',
     hindiName: 'जल संसाधन',
     icon: '💧',
-    color: '#60A5FA',
-    badgeClass: 'bg-blue-500/15 text-blue-400 border border-blue-500/30',
+    color: '#1D4ED8',
+    badgeClass: 'bg-[#EFF6FF] text-[#1D4ED8] border border-[#BFDBFE]',
     jharkhandStat: '18.9% HH with safe water access',
     sampleProblems: [
       'Fluoride contamination in groundwater across 14 villages in Garhwa',
@@ -20,8 +20,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Agriculture',
     hindiName: 'कृषि एवं सिंचाई',
     icon: '🌾',
-    color: '#4CAF75',
-    badgeClass: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30',
+    color: '#15803D',
+    badgeClass: 'bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0]',
     jharkhandStat: '80% population depends on farming',
     sampleProblems: [
       'Post-harvest tomato rotting in Gumla due to lack of low-cost cold storage',
@@ -34,8 +34,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Healthcare',
     hindiName: 'स्वास्थ्य सेवा',
     icon: '🏥',
-    color: '#EF4444',
-    badgeClass: 'bg-red-500/15 text-red-400 border border-red-500/30',
+    color: '#DC2626',
+    badgeClass: 'bg-[#FEF2F2] text-[#DC2626] border border-[#FECACA]',
     jharkhandStat: '1 doctor per 10,000 rural population',
     sampleProblems: [
       'Diagnostic delay for sickle cell anemia screening in remote Chaibasa',
@@ -48,8 +48,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Education',
     hindiName: 'शिक्षा एवं कौशल',
     icon: '📚',
-    color: '#F57C00',
-    badgeClass: 'bg-amber-500/15 text-amber-400 border border-amber-500/30',
+    color: '#C2410C',
+    badgeClass: 'bg-[#FFF7ED] text-[#C2410C] border border-[#FFEDD5]',
     jharkhandStat: '44% literacy in tribal belts',
     sampleProblems: [
       'Lack of interactive multilingual STEM content in Ho & Santhali languages',
@@ -62,8 +62,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Sanitation',
     hindiName: 'स्वच्छता एवं अपशिष्ट',
     icon: '🚽',
-    color: '#C084FC',
-    badgeClass: 'bg-purple-500/15 text-purple-400 border border-purple-500/30',
+    color: '#7C3AED',
+    badgeClass: 'bg-[#FAF5FF] text-[#7C3AED] border border-[#E9D5FF]',
     jharkhandStat: '32% rural HH have functional toilets',
     sampleProblems: [
       'Twin-pit toilet water table contamination in rocky strata of Ranchi outskirts',
@@ -76,8 +76,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Environment',
     hindiName: 'पर्यावरण व वन',
     icon: '🌳',
-    color: '#34D399',
-    badgeClass: 'bg-teal-500/15 text-teal-400 border border-teal-500/30',
+    color: '#065F46',
+    badgeClass: 'bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0]',
     jharkhandStat: '29% forest cover under threat',
     sampleProblems: [
       'Coal dust particulate pollution (PM2.5 > 280) near Jharia open cast mines',
@@ -90,8 +90,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Energy',
     hindiName: 'ऊर्जा एवं बिजली',
     icon: '⚡',
-    color: '#EAB308',
-    badgeClass: 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/30',
+    color: '#854D0E',
+    badgeClass: 'bg-[#FEFCE8] text-[#854D0E] border border-[#FEF08A]',
     jharkhandStat: '38% villages without reliable power',
     sampleProblems: [
       'Transformer burnout frequency during monsoon in Palamu rural grid',
@@ -104,8 +104,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Urban Infra',
     hindiName: 'शहरी अवसंरचना',
     icon: '🏗️',
-    color: '#94A3B8',
-    badgeClass: 'bg-slate-500/15 text-slate-300 border border-slate-500/30',
+    color: '#334155',
+    badgeClass: 'bg-[#F8FAFC] text-[#334155] border border-[#E2E8F0]',
     jharkhandStat: 'Ranchi expansion outpacing services',
     sampleProblems: [
       'Harmu river drainage overflow during cloudburst in Ranchi city',
@@ -118,8 +118,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Rural Livelihood',
     hindiName: 'ग्रामीण आजीविका',
     icon: '🧑‍🌾',
-    color: '#FB923C',
-    badgeClass: 'bg-orange-500/15 text-orange-400 border border-orange-500/30',
+    color: '#92400E',
+    badgeClass: 'bg-[#FFF8F1] text-[#92400E] border border-[#FFEDD5]',
     jharkhandStat: '38% ultra-poor in casual wage labour',
     sampleProblems: [
       'Low market price realization for organic Tussar silk weavers in Saraikela',
@@ -132,8 +132,8 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     name: 'Governance',
     hindiName: 'सुशासन एवं सेवाएं',
     icon: '🏛️',
-    color: '#818CF8',
-    badgeClass: 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30',
+    color: '#3730A3',
+    badgeClass: 'bg-[#EEF2FF] text-[#3730A3] border border-[#C7D2FE]',
     jharkhandStat: '62% schemes under-utilized due to awareness gap',
     sampleProblems: [
       'Tribal land record mutation delays due to lack of digitized geo-cadastral maps',
@@ -142,6 +142,41 @@ export const JHARKHAND_DOMAINS: DomainMeta[] = [
     ]
   }
 ];
+
+export const DOMAIN_ACCENT_COLORS: Record<string, string> = {
+  water_resources: '#1D4ED8',
+  agriculture: '#15803D',
+  healthcare: '#DC2626',
+  education: '#C2410C',
+  sanitation: '#7C3AED',
+  environment: '#065F46',
+  energy: '#854D0E',
+  urban_infra: '#334155',
+  rural_livelihood: '#92400E',
+  governance: '#3730A3'
+};
+
+export const DOMAIN_BADGE_STYLES: Record<string, { bg: string; text: string; border: string }> = {
+  water_resources: { bg: 'bg-[#EFF6FF]', text: 'text-[#1D4ED8]', border: 'border-[#BFDBFE]' },
+  agriculture: { bg: 'bg-[#F0FDF4]', text: 'text-[#15803D]', border: 'border-[#BBF7D0]' },
+  healthcare: { bg: 'bg-[#FEF2F2]', text: 'text-[#DC2626]', border: 'border-[#FECACA]' },
+  education: { bg: 'bg-[#FFF7ED]', text: 'text-[#C2410C]', border: 'border-[#FFEDD5]' },
+  sanitation: { bg: 'bg-[#FAF5FF]', text: 'text-[#7C3AED]', border: 'border-[#E9D5FF]' },
+  environment: { bg: 'bg-[#ECFDF5]', text: 'text-[#065F46]', border: 'border-[#A7F3D0]' },
+  energy: { bg: 'bg-[#FEFCE8]', text: 'text-[#854D0E]', border: 'border-[#FEF08A]' },
+  urban_infra: { bg: 'bg-[#F8FAFC]', text: 'text-[#334155]', border: 'border-[#E2E8F0]' },
+  rural_livelihood: { bg: 'bg-[#FFF8F1]', text: 'text-[#92400E]', border: 'border-[#FFEDD5]' },
+  governance: { bg: 'bg-[#EEF2FF]', text: 'text-[#3730A3]', border: 'border-[#C7D2FE]' }
+};
+
+export const STATUS_BADGES: Record<string, { label: string; bg: string; text: string; border: string }> = {
+  submitted: { label: 'Submitted', bg: 'bg-[#EFF6FF]', text: 'text-[#1D4ED8]', border: 'border-[#BFDBFE]' },
+  under_review: { label: 'Under Review', bg: 'bg-[#FFF7ED]', text: 'text-[#C2410C]', border: 'border-[#FFEDD5]' },
+  assigned: { label: 'Assigned', bg: 'bg-[#FAF5FF]', text: 'text-[#7C3AED]', border: 'border-[#E9D5FF]' },
+  in_progress: { label: 'In Progress', bg: 'bg-[#FEFCE8]', text: 'text-[#854D0E]', border: 'border-[#FEF08A]' },
+  deployed: { label: 'Deployed', bg: 'bg-[#EFF6FF]', text: 'text-[#1D4ED8]', border: 'border-[#BFDBFE]' },
+  resolved: { label: 'Resolved', bg: 'bg-[#F0FDF4]', text: 'text-[#15803D]', border: 'border-[#BBF7D0]' }
+};
 
 export interface DistrictInfo {
   name: string;

@@ -31,10 +31,10 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
       desc: 'Report grassroots issues via voice or camera, track live progress by SMS, view community Google Map, and verify deployments.',
       icon: User,
       badge: 'Grassroots & Community',
-      badgeColor: 'bg-amber-500/15 text-[#FF9A30] border-amber-500/30',
-      accentColor: 'from-[#F57C00]/20 to-[#C1440E]/10',
-      borderColor: 'hover:border-[#F57C00]',
-      buttonBg: 'bg-[#F57C00] hover:bg-[#FF9A30] text-[#0A1A14]',
+      badgeBg: 'bg-[#FEF0E0]',
+      badgeText: 'text-[#D4600A]',
+      accentBar: 'bg-[#F57C00]',
+      buttonBg: 'bg-[#F57C00] hover:bg-[#D4600A] text-white',
       initialView: 'citizen_submit',
       features: [
         { icon: Mic, text: 'Voice in Hindi, Santali or Nagpuri with AI transcription' },
@@ -45,15 +45,15 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
     },
     {
       id: 'GOVT_ADMIN' as UserRole,
-      title: 'Government Command Portal',
+      title: 'Government Command',
       hindiTitle: 'सरकारी कमांड सेंटर',
       desc: '24-District real-time Google Map telemetry, AI problem engine & scoring, university allocation, and DPE state audit reports.',
       icon: ShieldAlert,
       badge: 'State Administration',
-      badgeColor: 'bg-red-500/15 text-red-400 border-red-500/30',
-      accentColor: 'from-red-500/20 to-amber-500/10',
-      borderColor: 'hover:border-red-400',
-      buttonBg: 'bg-red-500 hover:bg-red-400 text-white',
+      badgeBg: 'bg-[#FEF2F2]',
+      badgeText: 'text-[#DC2626]',
+      accentBar: 'bg-[#DC2626]',
+      buttonBg: 'bg-[#DC2626] hover:bg-[#B91C1C] text-white',
       initialView: 'govt_dashboard',
       features: [
         { icon: MapPin, text: '24-District Google Maps Geospatial Intelligence' },
@@ -64,15 +64,15 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
     },
     {
       id: 'UNIVERSITY' as UserRole,
-      title: 'University & Research Hub',
+      title: 'University & Academia',
       hindiTitle: 'विश्वविद्यालय एवं शोध पोर्टल',
       desc: 'AI-matched capstone problem inbox, lab R&D and field milestone updater, and UGC Academic Bank of Credits (ABC) ledger.',
       icon: Building2,
       badge: 'Faculty & Students',
-      badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
-      accentColor: 'from-emerald-500/20 to-teal-500/10',
-      borderColor: 'hover:border-[#4CAF75]',
-      buttonBg: 'bg-[#4CAF75] hover:bg-[#6DC98D] text-[#0A1A14]',
+      badgeBg: 'bg-[#E8F5EE]',
+      badgeText: 'text-[#2E7D52]',
+      accentBar: 'bg-[#3D9970]',
+      buttonBg: 'bg-[#3D9970] hover:bg-[#2E7D52] text-white',
       initialView: 'university_inbox',
       features: [
         { icon: Sparkles, text: 'Department-matched civic problem inbox' },
@@ -83,15 +83,15 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
     },
     {
       id: 'INDUSTRY' as UserRole,
-      title: 'Industry & CSR Marketplace',
+      title: 'Industry & CSR Partner',
       hindiTitle: 'उद्योग एवं सीएसआर मार्केटप्लेस',
       desc: 'Discover pre-validated Schedule VII CSR challenges, pledge milestone funding, co-build with top universities, and export tax audits.',
       icon: Briefcase,
       badge: 'Corporate CSR & PSUs',
-      badgeColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
-      accentColor: 'from-blue-500/20 to-indigo-500/10',
-      borderColor: 'hover:border-blue-400',
-      buttonBg: 'bg-blue-500 hover:bg-blue-400 text-white',
+      badgeBg: 'bg-[#EFF6FF]',
+      badgeText: 'text-[#1D4ED8]',
+      accentBar: 'bg-[#1D4ED8]',
+      buttonBg: 'bg-[#1D4ED8] hover:bg-[#1E40AF] text-white',
       initialView: 'industry_marketplace',
       features: [
         { icon: Coins, text: 'Pre-validated Schedule VII CSR project marketplace' },
@@ -103,18 +103,18 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
   ];
 
   return (
-    <div className="max-w-6xl mx-auto py-8 space-y-12 pb-24">
+    <div className="max-w-[1280px] mx-auto py-10 px-4 space-y-12 pb-24">
       {/* Header Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1A3328] border border-[#4CAF75]/30 text-xs font-mono text-[#6DC98D] shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-[#F57C00] animate-ping" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FEF0E0] border border-[#F57C00]/30 text-xs font-bold text-[#D4600A] shadow-sm uppercase tracking-wider">
+          <span className="w-2 h-2 rounded-full bg-[#F57C00] animate-pulse" />
           <span>JHARKHAND INNOVATION & ACTION ALLIANCE • SIH 2026</span>
         </div>
 
-        <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-[#F0EDE6] tracking-tight">
+        <h1 className="font-display font-bold text-4xl sm:text-5xl text-[#1C1410] tracking-tight">
           Select Your Portal
         </h1>
-        <p className="text-sm sm:text-base text-[#8FA89E] leading-relaxed">
+        <p className="text-base sm:text-lg text-[#7A6355] leading-relaxed">
           SAMADHAN provides isolated, role-specific environments for every stakeholder. Choose your role below to enter your dedicated dashboard and tools.
         </p>
       </div>
@@ -127,41 +127,41 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
             <div
               key={r.id}
               id={`select-role-${r.id.toLowerCase()}`}
-              className={`relative bg-[#112318] border border-[#4CAF75]/25 ${r.borderColor} rounded-3xl p-6 sm:p-7 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl flex flex-col justify-between group overflow-hidden`}
+              className="relative bg-white border border-[#EDE6DE] hover:border-[#BFB0A3] rounded-[24px] p-7 shadow-[0_1px_3px_rgba(28,20,16,0.06),0_4px_12px_rgba(28,20,16,0.04)] hover:shadow-[0_4px_16px_rgba(28,20,16,0.10),0_8px_32px_rgba(28,20,16,0.06)] transition-all duration-200 hover:-translate-y-1 flex flex-col justify-between group overflow-hidden"
             >
-              {/* Subtle top gradient accent */}
-              <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${r.accentColor}`} />
+              {/* Left Accent Bar */}
+              <div className={`absolute top-0 bottom-0 left-0 w-1.5 ${r.accentBar}`} />
 
-              <div>
+              <div className="pl-2">
                 {/* Header Badge & Icon */}
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border ${r.badgeColor}`}>
+                  <span className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${r.badgeBg} ${r.badgeText}`}>
                     {r.badge}
                   </span>
-                  <div className="w-12 h-12 rounded-2xl bg-[#0A1A14] border border-[#4CAF75]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Icon className="w-6 h-6 text-[#F0EDE6]" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#FDF9F4] border border-[#EDE6DE] flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <Icon className="w-6 h-6 text-[#1C1410]" />
                   </div>
                 </div>
 
-                <h3 className="font-display font-extrabold text-2xl text-[#F0EDE6] group-hover:text-[#FF9A30] transition-colors">
+                <h3 className="font-display font-bold text-2xl text-[#1C1410] group-hover:text-[#D4600A] transition-colors">
                   {r.title}
                 </h3>
-                <p className="text-xs font-mono text-[#6DC98D] mt-0.5">{r.hindiTitle}</p>
-                <p className="text-xs text-[#8FA89E] leading-relaxed mt-2.5 mb-5">
+                <p className="text-xs font-semibold text-[#7A6355] mt-0.5">{r.hindiTitle}</p>
+                <p className="text-sm text-[#4A3728] leading-relaxed mt-2.5 mb-5">
                   {r.desc}
                 </p>
 
                 {/* Features List */}
-                <div className="space-y-2 pt-4 border-t border-[#4CAF75]/15 mb-6">
-                  <span className="text-[10px] font-mono text-[#8FA89E] uppercase tracking-wider block font-semibold">
+                <div className="space-y-2.5 pt-4 border-t border-[#EDE6DE] mb-6">
+                  <span className="text-[11px] font-bold text-[#7A6355] uppercase tracking-wider block">
                     Portal Capabilities:
                   </span>
                   {r.features.map((f, i) => {
                     const FIcon = f.icon;
                     return (
-                      <div key={i} className="flex items-center gap-2.5 text-xs text-[#D1D5DB]">
-                        <FIcon className="w-3.5 h-3.5 text-[#4CAF75] shrink-0" />
-                        <span>{f.text}</span>
+                      <div key={i} className="flex items-center gap-2.5 text-xs text-[#4A3728]">
+                        <FIcon className="w-4 h-4 text-[#3D9970] shrink-0" />
+                        <span className="font-medium">{f.text}</span>
                       </div>
                     );
                   })}
@@ -169,37 +169,40 @@ export const SelectPortalGateway: React.FC<SelectPortalGatewayProps> = ({ onSele
               </div>
 
               {/* Enter Button */}
-              <button
-                onClick={() => onSelectRole(r.id, r.initialView)}
-                className={`w-full py-3 px-4 rounded-xl ${r.buttonBg} font-semibold text-xs transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer group-hover:scale-[1.02]`}
-              >
-                <span>Enter {r.title}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="pl-2">
+                <button
+                  onClick={() => onSelectRole(r.id, r.initialView)}
+                  className={`w-full py-3 px-6 rounded-full ${r.buttonBg} font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer hover:-translate-y-0.5`}
+                >
+                  <span>Enter {r.title}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           );
         })}
       </div>
 
       {/* State Metric Footnote */}
-      <div className="p-6 bg-[#0A1A14] border border-[#4CAF75]/20 rounded-3xl grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <div className="p-6 bg-white border border-[#EDE6DE] rounded-[24px] grid grid-cols-2 sm:grid-cols-4 gap-4 text-center shadow-sm">
         <div>
-          <span className="block font-mono font-extrabold text-2xl text-[#F0EDE6]">24 / 24</span>
-          <span className="text-xs text-[#8FA89E]">Districts Covered</span>
+          <span className="block font-mono font-semibold text-3xl text-[#1C1410]">24 / 24</span>
+          <span className="text-xs font-bold text-[#7A6355] uppercase tracking-wider mt-1 block">Districts Covered</span>
         </div>
         <div>
-          <span className="block font-mono font-extrabold text-2xl text-[#4CAF75]">12</span>
-          <span className="text-xs text-[#8FA89E]">Premier Universities</span>
+          <span className="block font-mono font-semibold text-3xl text-[#2E7D52]">12</span>
+          <span className="text-xs font-bold text-[#7A6355] uppercase tracking-wider mt-1 block">Premier Universities</span>
         </div>
         <div>
-          <span className="block font-mono font-extrabold text-2xl text-[#60A5FA]">32,600+</span>
-          <span className="text-xs text-[#8FA89E]">Gram Panchayats</span>
+          <span className="block font-mono font-semibold text-3xl text-[#1D4ED8]">32,600+</span>
+          <span className="text-xs font-bold text-[#7A6355] uppercase tracking-wider mt-1 block">Gram Panchayats</span>
         </div>
         <div>
-          <span className="block font-mono font-extrabold text-2xl text-[#FF9A30]">₹1,280 Cr</span>
-          <span className="text-xs text-[#8FA89E]">CSR Investment Pool</span>
+          <span className="block font-mono font-semibold text-3xl text-[#D4600A]">₹1,280 Cr</span>
+          <span className="text-xs font-bold text-[#7A6355] uppercase tracking-wider mt-1 block">CSR Investment Pool</span>
         </div>
       </div>
     </div>
   );
 };
+
